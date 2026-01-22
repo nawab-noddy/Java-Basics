@@ -15,10 +15,7 @@ public class BankAccount {
 
 //    Deposit Method
     public void deposit(int amount) throws IllegalArgumentException {
-        if(amount < 0){
-            throw new IllegalArgumentException("Please Enter amount Greater than 0");
-        }
-        if(amount == 0){
+        if(amount <= 0){
             throw new IllegalArgumentException("Please Enter amount Greater than 0");
         }
         this.balance += amount;
@@ -26,13 +23,10 @@ public class BankAccount {
 
 //    Withdraw Method
     public void withdraw(int amount) throws IllegalArgumentException{
-        if(amount < 0){
+        if(amount <= 0){
          throw new IllegalArgumentException("Please Enter a valid amount to withdraw");
         }
         if(amount > this.balance){
-            throw new IllegalArgumentException("Please Enter a valid amount to withdraw");
-        }
-        if(amount == 0){
             throw new IllegalArgumentException("Please Enter a valid amount to withdraw");
         }
         this.balance -= amount;
