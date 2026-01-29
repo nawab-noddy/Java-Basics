@@ -1,6 +1,78 @@
+import java.lang.runtime.SwitchBootstraps;
+import java.security.spec.RSAOtherPrimeInfo;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 
+        BankService bankService = new BankService();
+        Scanner sc = new Scanner(System.in);
+        int option;
+        do {
+            System.out.println("Select an option");
+            System.out.println("1 for Create Account");
+            System.out.println("2 for Deposit");
+            System.out.println("3 for Withdraw");
+            System.out.println("4 for Check Balance");
+            System.out.println("5 for Exit");
+
+            option = sc.nextInt();
+
+            switch (option){
+                case 1:
+                    try{
+                    System.out.println("Give Your Account Number");
+                    int accNumber = sc.nextInt();
+                    System.out.println("Give Name for the Account");
+                    String accName = sc.next();
+                    System.out.println("Give Initial Amount for Account");
+                    int balance = sc.nextInt();
+                    bankService.createAccount(accNumber, accName, balance);
+                    System.out.println("Your Bank Account is created with the Account Number - " + accName + " , with Holder Name - " + accName + " , and with Balance - " + balance);
+                    }
+                    catch (IllegalArgumentException e){
+                        System.out.println("error - " + e.getMessage());
+                    }
+                    break;
+                case 2:
+                    try{
+                    System.out.println("Enter the account number");
+                    int accnumber = sc.nextInt();
+                    System.out.println("Enter the amount u want to deposit");
+                    int amountToDeposit = sc.nextInt();
+                    bankService.depositToAccount(accnumber,amountToDeposit);
+                    System.out.println("ur amount is deposit");
+                    }
+                    catch (IllegalArgumentException e){
+                        System.out.println("Error - " + e.getMessage());
+                    }
+                    break;
+                case 3:
+                    try{
+                    System.out.println("Enter the account number");
+                    int accno = sc.nextInt();
+                    System.out.println("enter the amount u want to withdraw");
+                    int withdraw =  sc.nextInt();
+                    bankService.withdrawFromAccount(accno, withdraw);
+                    System.out.println("Amount is withdrawn");
+                    }
+                    catch (IllegalArgumentException e){
+                        System.out.println("Error - " + e.getMessage());
+                    }
+                    break;
+                case 4 :
+                    try{
+                    System.out.println("Enter the account number");
+                    int number = sc.nextInt();
+                    int amount = bankService.getBalance(number);
+                        System.out.println(amount);
+                    }
+                    catch (IllegalArgumentException e){
+                        System.out.println("Error - " + e.getMessage());
+                    }
+                    break;
+            }
+        }while (option != 5);
     }
 }
 
