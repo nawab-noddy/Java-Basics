@@ -14,4 +14,31 @@ class BankService{
             storeAccounts.put(accNumber,newAccount);
         }
     }
+//    DEPOSIT TO ACCOUNT
+    public void depositToAccount(int accNumber,int amount) throws IllegalArgumentException{
+        if(!storeAccounts.containsKey(accNumber)){
+            throw new IllegalArgumentException("Account does not exist");
+        }
+        else{
+            storeAccounts.get(accNumber).deposit(amount);
+        }
+    }
+//     WITHDRAW THE MONEY
+    public void withdrawFromAccount(int accNumber,int amount) throws IllegalArgumentException{
+        if(!storeAccounts.containsKey(accNumber)){
+            throw new IllegalArgumentException("Account does not exist");
+        }
+        else{
+            storeAccounts.get(accNumber).withdraw(amount);
+        }
+    }
+//   CHECKING THE BALANCE
+    public int getBalance(int accNumber) throws IllegalArgumentException{
+        if(!storeAccounts.containsKey(accNumber)){
+            throw new IllegalArgumentException("Account does not exist");
+        }
+        else{
+             return storeAccounts.get(accNumber).getBalance();
+        }
+    }
 }
