@@ -5,6 +5,38 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+        AuthService authService = new AuthService();
+        Scanner sc = new Scanner(System.in);
+        int option;
+        do {
+            System.out.println("Select an option");
+            System.out.println("1 for Register");
+            System.out.println("2 for LogIn");
+            System.out.println("3 for Exit");
+
+            option = sc.nextInt();
+
+            try{
+                switch (option){
+                    case 1:
+                        System.out.println("Enter email &  create a new password");
+                        String email1 = sc.next();
+                        String password1 = sc.next();
+                        authService.registerUser(email1,password1);
+                        System.out.println("User register successfully");
+
+                    case 2:
+                        System.out.println("enter email  and password for login");
+                        String email2 = sc.next();
+                        String password2 = sc.next();
+                        authService.logInUser(email2,password2);
+                        System.out.println("LogIn Successfully");
+                }
+            }
+            catch (IllegalArgumentException e){
+                System.out.println("Error" + e.getMessage());
+            }
+        }while (option != 3);
     }
 }
 
